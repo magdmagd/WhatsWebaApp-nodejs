@@ -1,4 +1,4 @@
-                /**
+                                                /**
                                                  * Module dependencies.
                                                  */
 const express = require('express');
@@ -14,7 +14,7 @@ const qrCode = require('qrcode-terminal');
                                                     Variables & Const
                                                    */  
 const client = new Client();
-
+process.title = "whatsapp-node-api";
                                                     
                                                   /*
                                                     Process Running 
@@ -36,6 +36,18 @@ const client = new Client();
   console.log('Client is disconnected!');
 });//Client was disconnected 
 
+client.on("authenticated",()=>
+{
+  console.log("Client Authinticated Successfully") ;
+});
+
+client.on('auth_failure', msg => 
+{
+  // Fired if session restore was unsuccessfull
+  console.error('AUTHENTICATION FAILURE', msg);
+  process.exit();
+});//check
+
 
  client.on('message', message => 
  {
@@ -44,12 +56,16 @@ const client = new Client();
 
 client.on('message', message => 
 {
-	if(message.body === 'ping') {
+	if(message.body === 'ping')
+   {
 		message.reply('pong');
-	}
+	 }
 });//Read & Check Message
 
  
 
  client.initialize();
+
+
+ module.exports = client ;
  
