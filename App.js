@@ -19,11 +19,13 @@ process.title = "whatsapp-node-api";
                                                   /*
                                                     Process Running 
                                                    */  
+
+  // Generate QR Code                                                 
  client.on('qr', (qr) => 
  {
   qrCode.generate(qr, {small: true});
   console.log('QR RECEIVED', qr);
- });         
+ });          
  
  
  client.on('ready', () => 
